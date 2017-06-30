@@ -302,6 +302,7 @@ def send_mms(api, config, mdn, senderid, attachment):
         body="Hello, this is a MMS message.")
 
     print('Sent message request {}'.format(reqid))
+```
 ```text
 Uploaded attachment wMjURamVl9ITSXRJSkMoR4
 Sent message request 9NeqCbNXBYvRO73jC2rbc5
