@@ -1,0 +1,6 @@
+__pycache__/
+*.py[cod]
+.idea/
+tickets/
+env-p[23]/
+*.log
