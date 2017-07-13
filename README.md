@@ -102,8 +102,8 @@ res.list(foo="Foo", from_="Me")
 
 # Some examples
 
-## Listing Sender Id's
-If you want to list available Sender Id's, it can be done as easy as:
+## Listing Sender Ids
+If you want to list available Sender Ids, it can be done as easy as:
 ```python
 def list_senderids(api, config):
     # Construct an instance of the authentication object
@@ -177,7 +177,7 @@ This should produce output similar to:
 John Doe changed name to John Anderson
 ```
 
-## Sending a SMS to a GSM number
+## Sending a SMS to a Mobile number
 ```python
 def send_sms(api, config, mdn, senderid):
     # Construct an instance of the authentication object
@@ -222,7 +222,7 @@ reqid = mrq_res.create(
     body="Hello, this is a SMS message.")
 ```
 
-## Sending a Message to a Group
+## Sending a Message to a Contact Group
 ```python
 def send_sms(api, config, bob_mdn, alice_mdn, senderid):
 
