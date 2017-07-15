@@ -35,8 +35,8 @@ class Session(object):
 
     def __set_auth_token(self):
         if self._auth.token == None:
-            self._session.headers["int-appId"] =  self._auth.appid
-            self._session.headers["int-companyId"] = self._auth.companyid
+            self._session.headers["int-appId"] = str(self._auth.appid)
+            self._session.headers["int-companyId"] = str(self._auth.companyid)
             self._session.headers["int-txnId"] = "bogus-transaction-id"
             self._session.headers["int-quota-plan"] = self._auth.quotaplan
         else:
