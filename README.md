@@ -7,9 +7,11 @@ different REST API interfaces.
 The Python API hides some of the REST API's constraints, like
 lists being returned in logical pages of <i>n</i> records. With the
 python SDK, the list() method returns a generator that returns
-single list items, util there are no more.
+single list items, until there are no more.
 
 The SDK is compatible with Python 2.7 and 3.5
+
+Please register for a free account at https://developer.syniverse.com to get your API keys.
 
 ## How to use the SDK
 All the data objects follow a common pattern.
@@ -56,7 +58,7 @@ id = create(contact)
 All objects that can be updated or deleted has <b>update()</b> and/or
 <b>delete()</b> methods. The resource of an object also have <b>delete()</b>
 methods, so if you need to delete an object you just know by it's id,
-there is no need to instantiate it. You jst call
+there is no need to instantiate it. You just call
  ```python
 res.delete(id)
 ```
@@ -75,7 +77,7 @@ for msg in request.list_messages():
 ```
 
 ## Error handling
-Errors are reported trough exceptions.
+Errors are reported through exceptions.
 
 ## Special considerations
 The REST API has some read-only
