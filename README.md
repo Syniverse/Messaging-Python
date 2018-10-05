@@ -374,6 +374,6 @@ Ubuntu zesty.
 $ virtualenv -p /usr/bin/python3 env-p3
 $ . ./env-p3/bin/activate
 $ pip install -r requirements.txt
-$ python examples/list_senderids.py 
+$ PYTHONPATH=$(pwd) python examples/list_senderids.py
 ```
 
