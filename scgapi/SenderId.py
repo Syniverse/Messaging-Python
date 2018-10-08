@@ -24,7 +24,7 @@ class ProvisionSenderId(scgapi.ObjBase):
         self._init(**kwargs)
 
     def _get_member_variable_names(self): \
-            return ("state", "version_number")
+            return ("state", "version_number", "register_method", "verification_code" )
 
     @staticmethod
     def _create_from_json(json, resource=None):
@@ -49,10 +49,11 @@ class SenderId(scgapi.ObjBase):
         return ("_id", "parent_id", "name", "ownership", "class_id",
                 "type_id", "state", "address", "content_type",
                 "message_templates", "country", "operators",
-                "credentials", "two_way_required",
+                "credentials", "two_way_required", "use_case",
                 "keep_sender_address", "dr_required",
                 "consent_managed_by", "capabilities",
                 "check_whitelist", "billing", "_application_id",
+                "foreign_id", "register_method", "verification_code",
                 "_created_date", "_last_update_date", "_version_number")
 
     @staticmethod
@@ -92,6 +93,15 @@ class SenderId(scgapi.ObjBase):
         """Deactivete the SenderId"""
         self.get_resource().set_state(self.id, self.version_number, "INACTIVE")
 
+    def init_whatsapp_registration(self, register_method='sms'):
+        self.get_resource().set_state(self.id, self.version_number,
+                                      "PENDING_CONFIRMATION",
+                                      {"register_method": register_method})
+
+    def activate_whatsapp_registration(self, verification_code):
+        self.get_resource().set_state(self.id, self.version_number,
+                                      "ACTIVE",
+                                      {"verification_code": verification_code})
 
 class Resource(scgapi.ResourceImpl):
     """
@@ -123,9 +133,11 @@ class Resource(scgapi.ResourceImpl):
             self._cls().wash_args(**kwargs))
         return rval["id"]
 
-    def set_state(self, id, version, activate):
+    def set_state(self, id, version, activate, args=None):
         state = ProvisionSenderId()
         kwargs = {"state":activate, "version_number":version}
+        if args:
+            kwargs.update(args)
 
         url = URL_BASE + "/" + id
         self._session._post_request(

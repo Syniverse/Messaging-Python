@@ -363,6 +363,27 @@ Message Request mjwLKqumB82wGAU8kwv317 is in state COMPLETED with 0 delivered an
 
 ```
 
+## Activating Whatsapp
+
+We have provided a python [example app](examples/whatsapp.py) that shows how to create and activate 
+a sender-id for Whatsapp.
+
+Example on use:
+```bash
+
+# Create the sender-id
+$ PYTHONPATH=$(pwd) python examples/whatsapp.py --phone-number=<Phone number registered with Whatsapp> --token <Token from Whatsapp> --auth auth.json
+
+# Syniverse will now provision your sender-id
+
+# Initialize the process to get a verification code from Whatsapp
+$ PYTHONPATH=$(pwd) python examples/whatsapp.py --sender-id=<The id you just created> --register-method=sms --auth auth.json
+
+# Activate the sender-id
+$ PYTHONPATH=$(pwd) python examples/whatsapp.py --sender-id=<The id you just created> --verification-code=<Code from Whatsapp> --auth auth.json
+```
+
+
 # Using with virtualenv
 
 In order to use the library in a private environment,
